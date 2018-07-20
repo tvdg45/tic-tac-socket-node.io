@@ -13,13 +13,11 @@ const server = express()
 
 const io = socketIO(server);
 
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
+io.on('connection', function (client) {
   
-	socket.on('create_threads', function(data) {
+	client.on('create_threads', function(data) {
 		
-		socket.emit('create_threads', data);
-		socket.broadcast.emit('create_threads', data);
+		client.emit('create_threads', data);
+		client.broadcast.emit('create_threads', data);
 	});
 });
