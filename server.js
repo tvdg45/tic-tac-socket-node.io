@@ -21,5 +21,3 @@ io.on('connection', (socket) => {
 		client.broadcast.emit('load_threads', data);
 	});
 });
-
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
