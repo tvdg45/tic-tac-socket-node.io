@@ -1,14 +1,19 @@
 <html>
   <body>
-    <p id='server-time'></p>
+    <p id='threads'></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io();
-      var el = document.getElementById('server-time');
+      var socket = io('http://socket-io-1.herokuapp.com');
 
-      socket.on('time', function(timeString) {
-        el.innerHTML = 'Current server time: ' + timeString;
-      });
+      socket.on('load_threads', function(data) {
+
+           $('#threads').prepend(data);
+       });
+
+function submit_message() {
+	
+	socket.emit('load_threads', 'hi');
+}
     </script>
   </body>
 </html>
