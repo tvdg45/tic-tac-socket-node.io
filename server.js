@@ -4,7 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const path = require('path');
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 1000;
 const INDEX = path.join(__dirname, 'index.html');
 
 const server = express()
@@ -15,9 +15,9 @@ const io = socketIO(server);
 
 io.on('connection', function (client) {
   
-	client.on('create_threads', function(data) {
+	client.on('load_threads', function(data) {
 		
-		client.emit('create_threads', data);
-		client.broadcast.emit('create_threads', data);
+		client.emit('load_threads', data);
+		client.broadcast.emit('load_threads', data);
 	});
 });
