@@ -15,6 +15,12 @@ const io = socketIO(server);
 
 io.on('connection', function (client) {
 
+	client.on('refresh_admin_window', function(data) {
+		
+		client.emit('refresh_admin_window', data);
+		client.broadcast.emit('refresh_admin_window', data);
+	});
+	
 	client.on('log_other_users_out', function(data) {
 		
 		client.emit('log_other_users_out', data);
@@ -25,23 +31,5 @@ io.on('connection', function (client) {
 		
 		client.emit('load_threads', data);
 		client.broadcast.emit('load_threads', data);
-	});
-
-  	client.on('change_threads', function(data) {
-		
-  		client.emit('change_threads', data);
-  		client.broadcast.emit('change_threads', data);
-  	});
-	
-  	client.on('erase_threads', function(data) {
-		
-  		client.emit('erase_threads', data);
-  		client.broadcast.emit('erase_threads', data);
-  	});
-	
-	client.on('create_threads', function(data) {
-		
-		client.emit('create_threads', data);
-		client.broadcast.emit('create_threads', data);
 	});
 });
