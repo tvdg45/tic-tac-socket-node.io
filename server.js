@@ -14,6 +14,12 @@ const server = express()
 const io = socketIO(server);
 
 io.on('connection', function (client) {
+
+	client.on('log_other_users_out', function(data) {
+		
+		client.emit('log_other_users_out', data);
+		client.broadcast.emit('log_other_users_out', data);
+	});
 	
 	client.on('load_threads', function(data) {
 		
