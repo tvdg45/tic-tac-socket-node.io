@@ -33,12 +33,4 @@ io.on('connection', function (client) {
 		
 		forceGC();
 	});
-	
-	client.on('cron_refresh_cart_window', function(data) {
-		
-		client.emit('cron_refresh_cart_window', data);
-		client.broadcast.emit('cron_refresh_cart_window', data);
-		
-		forceGC();
-	});
 });
