@@ -26,18 +26,10 @@ function forceGC() {
 
 io.on('connection', function (client) {
 
-	client.on('refresh_cart_window', function(data) {
+	client.on('start_tic_tac_toe_game', function(data) {
 		
-		client.emit('refresh_cart_window', data);
-		client.broadcast.emit('refresh_cart_window', data);
-		
-		forceGC();
-	});
-	
-	client.on('cron_refresh_cart_window', function(data) {
-		
-		client.emit('cron_refresh_cart_window', data);
-		client.broadcast.emit('cron_refresh_cart_window', data);
+		client.emit('start_tic_tac_toe_game', data);
+		client.broadcast.emit('start_tic_tac_toe_game', data);
 		
 		forceGC();
 	});
