@@ -33,4 +33,12 @@ io.on('connection', function (client) {
 		
 		forceGC();
 	});
+	
+	client.on('computer_choose_space', function(data) {
+		
+		client.emit('computer_choose_space', data);
+		client.broadcast.emit('computer_choose_space', data);
+		
+		forceGC();
+	});
 });
