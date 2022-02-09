@@ -41,4 +41,12 @@ io.on('connection', function (client) {
 		
 		forceGC();
 	});
+	
+	client.on('display_chat_conversation', function(data) {
+		
+		client.emit('display_chat_conversation', data);
+		client.broadcast.emit('display_chat_conversation', data);
+		
+		forceGC();
+	});
 });
